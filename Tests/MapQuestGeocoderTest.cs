@@ -15,7 +15,7 @@ namespace Geocoding.Tests
 		protected override IGeocoder CreateGeocoder()
 		{
 			string k = ConfigurationManager.AppSettings["mapQuestKey"];
-			return new MapQuestGeocoder(k);
+			return new MapQuestGeocoder(k) {};
 		}
 
 		[Theory]

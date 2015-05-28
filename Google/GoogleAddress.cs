@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Geocoding.Google
 {
-	public class GoogleAddress : Address
+	public class GoogleAddress : ParsedAddress
 	{
 		readonly GoogleAddressType type;
 		readonly GoogleAddressComponent[] components;
@@ -46,5 +46,41 @@ namespace Geocoding.Google
 			this.isPartialMatch = isPartialMatch;
 			this.viewport = viewport;
 		}
+
+
+        // ParsedAddress Properties
+
+
+
+        public override string Street
+        {
+            get { return this[GoogleAddressType.StreetAddress] != null ? this[GoogleAddressType.StreetAddress].LongName : string.Empty; }
+            set { base.Street = value; }
+        }
+        public override string City
+        {
+            get { return this[GoogleAddressType.Locality] != null ? this[GoogleAddressType.Locality].LongName : string.Empty; }
+            set { base.Country = value; }
+        }
+        public override string County
+        {
+            get { return this[GoogleAddressType.AdministrativeAreaLevel2] != null ? this[GoogleAddressType.AdministrativeAreaLevel2].LongName : string.Empty; }
+            set { base.County = value; }
+        }
+        public override string State
+        {
+            get { return this[GoogleAddressType.AdministrativeAreaLevel1] != null ? this[GoogleAddressType.AdministrativeAreaLevel1].LongName : string.Empty; }
+            set { base.State = value; }
+        }
+        public override string Country
+        {
+            get { return this[GoogleAddressType.Country] != null ? this[GoogleAddressType.Country].LongName : string.Empty; }
+            set { base.Country = value; }
+        }
+        public override string PostCode
+        {
+            get { return this[GoogleAddressType.PostalCode] != null ? this[GoogleAddressType.PostalCode].LongName : string.Empty; }
+            set { base.PostCode = value; }
+        }
 	}
 }

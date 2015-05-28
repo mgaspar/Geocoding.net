@@ -71,5 +71,18 @@ namespace Geocoding.Tests
 			GoogleAddress[] addresses = geocoder.Geocode(address).ToArray();
 			Assert.Equal(result, addresses[0].FormattedAddress);
 		}
+
+        [Theory]
+        [InlineData("United States", "", "", "United States")]
+        [InlineData("Illinois, US", "", "Illinois", "United States")]
+        [InlineData("New York, New York", "New York", "New York", "United States")]
+        public virtual void ReturnsParsedAddresses(string address, string city, string state, string country)
+        {
+            ParsedAddress[] addresses = geocoder.Geocode(address).ToArray();
+            Assert.NotEmpty(addresses);
+            Assert.Equal(city, addresses[0].City);
+            Assert.Equal(state, addresses[0].State);
+            Assert.Equal(country, addresses[0].Country);
+        }
 	}
 }
