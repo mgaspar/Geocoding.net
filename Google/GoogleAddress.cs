@@ -47,36 +47,42 @@ namespace Geocoding.Google
 			this.viewport = viewport;
 		}
 
-
-        // ParsedAddress Properties
-
-
-
+        // ParsedAddress Street Property
         public override string Street
         {
             get { return this[GoogleAddressType.StreetAddress] != null ? this[GoogleAddressType.StreetAddress].LongName : string.Empty; }
             set { base.Street = value; }
         }
+
+        // ParsedAddress City Property
         public override string City
         {
             get { return this[GoogleAddressType.Locality] != null ? this[GoogleAddressType.Locality].LongName : string.Empty; }
             set { base.Country = value; }
         }
+
+        // ParsedAddress County Property
         public override string County
         {
             get { return this[GoogleAddressType.AdministrativeAreaLevel2] != null ? this[GoogleAddressType.AdministrativeAreaLevel2].LongName : string.Empty; }
             set { base.County = value; }
         }
+
+        // ParsedAddress State Property
         public override string State
         {
-            get { return this[GoogleAddressType.AdministrativeAreaLevel1] != null ? this[GoogleAddressType.AdministrativeAreaLevel1].LongName : string.Empty; }
+            get { return this[GoogleAddressType.AdministrativeAreaLevel1] != null ? this[GoogleAddressType.AdministrativeAreaLevel1].ShortName : string.Empty; }
             set { base.State = value; }
         }
+
+        // ParsedAddress Country Property
         public override string Country
         {
             get { return this[GoogleAddressType.Country] != null ? this[GoogleAddressType.Country].LongName : string.Empty; }
             set { base.Country = value; }
         }
+
+        // ParsedAddress PostCode Property
         public override string PostCode
         {
             get { return this[GoogleAddressType.PostalCode] != null ? this[GoogleAddressType.PostalCode].LongName : string.Empty; }

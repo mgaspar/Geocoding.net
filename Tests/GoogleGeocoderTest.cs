@@ -74,8 +74,9 @@ namespace Geocoding.Tests
 
         [Theory]
         [InlineData("United States", "", "", "United States")]
-        [InlineData("Illinois, US", "", "Illinois", "United States")]
-        [InlineData("New York, New York", "New York", "New York", "United States")]
+        [InlineData("Illinois, US", "", "IL", "United States")]
+        [InlineData("New York, New York", "New York", "NY", "United States")]
+        [InlineData("São Paulo, São Paulo", "São Paulo", "SP", "Brazil")]
         public virtual void ReturnsParsedAddresses(string address, string city, string state, string country)
         {
             ParsedAddress[] addresses = geocoder.Geocode(address).ToArray();
