@@ -56,5 +56,19 @@ namespace Geocoding.Tests
 			BingAddress[] addresses = geoCoder.ReverseGeocode(38.8976777, -77.036517).ToArray();
 			Assert.NotEmpty(addresses);
 		}
+
+        [Theory]
+        [InlineData("United States", "", "", "United States")]
+        [InlineData("Illinois, US", "", "IL", "United States")]
+        [InlineData("New York, New York", "New York", "NY", "United States")]
+        [InlineData("São Paulo, São Paulo", "Sao Paulo", "SP", "Brazil")]
+        public virtual void ReturnsParsedAddresses(string address, string city, string state, string country)
+        {
+            ParsedAddress[] addresses = geoCoder.Geocode(address).ToArray();
+            Assert.NotEmpty(addresses);
+            Assert.Equal(city, addresses[0].City);
+            Assert.Equal(state, addresses[0].State);
+            Assert.Equal(country, addresses[0].Country);
+        }
 	}
 }

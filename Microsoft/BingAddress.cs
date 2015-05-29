@@ -2,7 +2,10 @@
 
 namespace Geocoding.Microsoft
 {
-	public class BingAddress : Address
+    /// <remarks>
+    /// https://msdn.microsoft.com/en-us/library/ff701726.aspx
+    /// </remarks>
+	public class BingAddress : ParsedAddress
 	{
 		readonly string addressLine, adminDistrict, adminDistrict2, countryRegion, locality, postalCode;
 		readonly EntityType type;
@@ -47,6 +50,42 @@ namespace Geocoding.Microsoft
 		{
 			get { return confidence; }
 		}
+
+        // ParsedAddress Street Property
+        public override string Street
+        {
+            get { return AddressLine; }
+        }
+
+        // ParsedAddress City Property
+	    public override string City
+	    {
+	        get { return Locality; }
+	    }
+
+	    // ParsedAddress County Property
+        public override string County
+        {
+            get { return AdminDistrict2 ; }
+        }
+
+        // ParsedAddress State Property
+        public override string State
+        {
+            get { return AdminDistrict; }
+        }
+
+        // ParsedAddress Country Property
+        public override string Country
+        {
+            get { return CountryRegion; }
+        }
+
+        // ParsedAddress PostCode Property
+        public override string PostCode
+        {
+            get { return PostalCode; }
+        }
 
 		public BingAddress(string formattedAddress, Location coordinates, string addressLine, string adminDistrict, string adminDistrict2,
 			string countryRegion, string locality, string postalCode, EntityType type, ConfidenceLevel confidence)
