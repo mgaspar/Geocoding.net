@@ -88,5 +88,12 @@ namespace Geocoding.Google
             get { return this[GoogleAddressType.PostalCode] != null ? this[GoogleAddressType.PostalCode].LongName : string.Empty; }
             set { base.PostCode = value; }
         }
+
+        // ParsedAddress District Property
+        public override string District
+        {
+            get { return this[GoogleAddressType.Neighborhood] != null ? this[GoogleAddressType.Neighborhood].LongName : string.Empty; }
+            set { base.District = value; }
+        }
 	}
 }
